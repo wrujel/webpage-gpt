@@ -29,6 +29,7 @@
 <div align="center">
 
   [![React][react]][react-link]
+  [![react-icons][react-icons]][react-icons-link]
   [![Vercel][vercel]][vercel-link]
   [![Vite][vite]][vite-link]
   [![Bun][bun]][bun-link]
