@@ -37,7 +37,7 @@
 </div>
 
 <div align='center'>
-  This is a web page fully responsive, build with React and deployed on Vercel. The page has a beautiful design and is fully responsive. Modern and clean design, with a lot of animations and transitions. Also use Vite as a build tool and bun for the development environment. 
+  This is a fully responsive web page, built with React and deployed on Vercel. The page has a beautiful design and is fully responsive. Modern and clean design, with a lot of animations and transitions. Also use Vite as a build tool and bun for the development environment. 
 
   [Demo](https://webpage-gpt-wrujels-projects.vercel.app/) · [Report issue](/issues) · [Suggest something](/issues)
 </div>
