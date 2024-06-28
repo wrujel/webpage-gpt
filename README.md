@@ -1,4 +1,4 @@
-[demo-link]: https://vercel.com/wrujels-projects/webpage-gpt/Eg717z3cnAMYFkrSCQNX2tkyH4S5
+[demo-link]: https://webpage-gpt-wrujels-projects.vercel.app/
 [status]: https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fwrujel%2Fmonitor-repos%2Fmain%2Fdata%2Fwebpage-gpt.json
 [deploy]: https://img.shields.io/github/deployments/wrujel/webpage-gpt/production?style=for-the-badge&label=Deploy
 [tests]: https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fwrujel%2Fmonitor-tests%2Fmain%2Fdata%2Fwebpage-gpt.json
@@ -39,7 +39,7 @@
 <div align='center'>
   This is a web page fully responsive, build with React and deployed on Vercel. The page has a beautiful design and is fully responsive. Modern and clean design, with a lot of animations and transitions. Also use Vite as a build tool and bun for the development environment. 
 
-  [Demo](https://vercel.com/wrujels-projects/webpage-gpt/Eg717z3cnAMYFkrSCQNX2tkyH4S5) · [Report issue](/issues) · [Suggest something](/issues)
+  [Demo](https://webpage-gpt-wrujels-projects.vercel.app/) · [Report issue](/issues) · [Suggest something](/issues)
 </div>
 
 ## Table of contents
