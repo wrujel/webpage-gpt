@@ -1,5 +1,5 @@
 import people from "../../assets/people.png";
-import ai from "../../assets/ai.png";
+import ai from "../../assets/ai.webp";
 import "./Main.css";
 
 const Main = () => {

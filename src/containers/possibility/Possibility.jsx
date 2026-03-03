@@ -1,4 +1,4 @@
-import possibilityImage from "../../assets/possibility.png";
+import possibilityImage from "../../assets/possibility.webp";
 import "./Possibility.css";
 
 const Possibility = () => {
