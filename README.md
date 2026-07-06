@@ -34,7 +34,7 @@
 <div align='center'>
   Modern landing page for GPT-4o built with React and Vite, featuring a sleek dark UI with gradient accents, responsive design, and multiple content sections including blog, features, and call-to-action.
 
-  [Demo]({{DEMO_URL}}) · [Report issue](/issues) · [Suggest something](/issues)
+  [Demo][demo-link] · [Report issue](/issues) · [Suggest something](/issues)
 </div>
 
 ## Table of Contents
