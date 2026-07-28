@@ -17,7 +17,7 @@
 </div>
 
 <div align='center'>
-  <h1>GPT-4o Landing Page with React</h1>
+  <h1>GPT Landing Page with React</h1>
 </div>
 
 <div align='center'>
