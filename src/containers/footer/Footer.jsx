@@ -1,34 +1,43 @@
-import logo from "../../assets/logo.svg";
+import { useRef } from "react";
+import { useGSAP, reveals } from "../../lib/gsapSetup";
 import "./Footer.css";
 
 const Footer = () => {
+  const scope = useRef(null);
+
+  useGSAP(() => reveals(scope.current), { scope });
+
   return (
-    <div className="web__footer">
-      <div className="web__footer-wrapper">
-        <div className="web__footer-heading">
-          <h1 className="gradient__text">
-            Do you want to step in to the future before others
-          </h1>
-        </div>
-        <div className="web__footer-btn">
-          <button type="button">Request Early Access</button>
-        </div>
-        <div className="web__footer-links">
-          <div className="web__footer-links__logo">
-            <img src={logo} alt="logo" />
-            <p>OpenAI &copy; 2015 &ndash; 2024</p>
+    <footer className="footer" ref={scope}>
+      <div className="floor floor--static" aria-hidden="true">
+        <div className="floor__grid" />
+      </div>
+      <div className="footer__wrapper">
+        <h2 className="footer__heading" data-split>
+          Do you want to step in to the future before others
+        </h2>
+        <button type="button" className="footer__btn" data-reveal>
+          Request Early Access
+        </button>
+
+        <div className="footer__links" data-reveal-group>
+          <div className="footer__brand">
+            <p className="footer__logo">
+              GPT<span>-Bot</span>
+            </p>
+            <p>GPT-Bot &copy; 2026 &mdash; a concept experience</p>
           </div>
-          <div className="web__footer-links__section">
-            <span>ChatGPT</span>
+          <div className="footer__section">
+            <span>GPT-Bot</span>
             <ul>
               <li>For Everyone</li>
               <li>For Teams</li>
               <li>For Enterprises</li>
-              <li>ChatGPT login</li>
+              <li>GPT-Bot login</li>
               <li>Download</li>
             </ul>
           </div>
-          <div className="web__footer-links__section">
+          <div className="footer__section">
             <span>Company</span>
             <ul>
               <li>About us</li>
@@ -39,8 +48,8 @@ const Footer = () => {
               <li>Careers</li>
             </ul>
           </div>
-          <div className="web__footer-links__section">
-            <span>Terms & policies</span>
+          <div className="footer__section">
+            <span>Terms &amp; policies</span>
             <ul>
               <li>Terms of use</li>
               <li>Privacy policy</li>
@@ -49,14 +58,19 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="web__footer-copyright">
-          <p>
-            This site is protected by reCAPTCHA and the Google Privacy Policy
-            and Terms of Service apply.
-          </p>
-        </div>
       </div>
-    </div>
+
+      <div className="footer__wordmark" aria-hidden="true" data-reveal>
+        GPT-BOT
+      </div>
+
+      <div className="footer__copyright">
+        <p>
+          This site is protected by reCAPTCHA and the Google Privacy Policy and
+          Terms of Service apply.
+        </p>
+      </div>
+    </footer>
   );
 };
 

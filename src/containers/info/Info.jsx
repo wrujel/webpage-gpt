@@ -1,36 +1,55 @@
+import { useRef } from "react";
 import { Feature } from "../../components";
+import { useGSAP, reveals } from "../../lib/gsapSetup";
 import "./Info.css";
 
 const Info = () => {
+  const scope = useRef(null);
+
+  useGSAP(() => reveals(scope.current), { scope });
+
   return (
-    <div className="web__info section__margin" id="info">
-      <div className="web__info-feature">
+    <section className="info section__padding" id="info" ref={scope}>
+      <div className="info__intro" data-reveal>
         <Feature
-          title="What is GPT-4o"
-          text="GPT-4o is a powerful AI model that can generate human-like text. It is the fourth iteration of the GPT series and is the most advanced model yet."
+          title="What is GPT-Bot"
+          text="GPT-Bot is an autonomous assistant robot and the most advanced model in the GPT series. He floats in the air, sees, listens and talks — a companion, not just a tool."
         />
       </div>
-      <div className="web__info-heading">
-        <h1 className="gradient__text">
-          The possibilities are beyond your imagination
-        </h1>
-        <span>Explore The Library</span>
+
+      <div className="info__layout">
+        <div className="info__sticky">
+          <h2 className="info__heading" data-split>
+            The possibilities are beyond your imagination
+          </h2>
+          <a className="info__link" href="#blog" data-reveal>
+            Explore The Library
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+
+        <div className="info__cards" data-reveal-group>
+          <div className="info__card">
+            <Feature
+              title="Natural Conversation"
+              text="Talk to GPT-Bot like a friend. He understands context, remembers your preferences and responds in real time — from customer support to daily planning."
+            />
+          </div>
+          <div className="info__card">
+            <Feature
+              title="Floating Knowledge Base"
+              text="GPT-Bot hovers by your side with instant answers on nearly any topic — homework help, deep research, or settling dinner-table debates."
+            />
+          </div>
+          <div className="info__card">
+            <Feature
+              title="Patient Tutor"
+              text="He explains new concepts at your pace, quizzes you along the way, and turns boring lessons into missions worth finishing."
+            />
+          </div>
+        </div>
       </div>
-      <div className="web__info-container">
-        <Feature
-          title="ChatBots"
-          text="Create ChatBots that can interact with users in a natural way and provide assistance in real-time. This can be used for customer support, sales, and more."
-        />
-        <Feature
-          title="Knowledge Base"
-          text="Build a knowledge base that can answer questions and provide information on a wide range of topics. This can be used for customer support, education, and more."
-        />
-        <Feature
-          title="Education"
-          text="Create educational content for students and teachers. This can include textbooks, quizzes, and more. GPT-4o can help students learn new concepts and teachers create engaging lessons."
-        />
-      </div>
-    </div>
+    </section>
   );
 };
 

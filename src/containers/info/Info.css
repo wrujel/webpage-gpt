@@ -1,145 +1,94 @@
-.web__info {
+.info {
   display: flex;
   flex-direction: column;
+  gap: 5rem;
+}
 
+.info__intro {
+  max-width: 34rem;
   padding: 2rem;
-  background: var(--color-footer);
-
-  /* ff 3.6+ */
-  background: -moz-radial-gradient(
-    circle at 30% -100%,
-    #042c54 25%,
-    rgba(4, 44, 84, 1) 85%,
-    rgba(27, 120, 222, 1) 100%
-  );
-
-  /* safari 5.1+,chrome 10+ */
-  background: -webkit-radial-gradient(
-    circle at 30% -100%,
-    #042c54 25%,
-    rgba(4, 44, 84, 1) 85%,
-    rgba(27, 120, 222, 1) 100%
-  );
-
-  /* opera 11.10+ */
-  background: -o-radial-gradient(
-    circle at 30% -100%,
-    #042c54 25%,
-    rgba(4, 44, 84, 1) 85%,
-    rgba(27, 120, 222, 1) 100%
-  );
-
-  /* ie 10+ */
-  background: -ms-radial-gradient(
-    circle at 30% -100%,
-    #042c54 25%,
-    rgba(4, 44, 84, 1) 85%,
-    rgba(27, 120, 222, 1) 100%
-  );
-
-  /* global 92%+ browsers support */
-  background: radial-gradient(
-    circle at 30% -100%,
-    #042c54 25%,
-    rgba(4, 44, 84, 1) 85%,
-    rgba(27, 120, 222, 1) 100%
-  );
-
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  background: var(--color-surface);
 }
 
-.web__info-feature {
+.info__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 5rem;
+  align-items: start;
+}
+
+.info__sticky {
+  position: sticky;
+  top: 18vh;
   display: flex;
-}
-
-.web__info-feature .web__features-container_feature {
-  margin: 0;
-}
-
-.web__info-feature .web__features-container_feature-text {
-  min-width: 700px;
-}
-
-.web__info-heading {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: 4rem 1rem 2rem;
-}
-
-.web__info-heading h1 {
-  font-family: var(--font-family);
-  font-size: 34px;
-  line-height: 45px;
-  font-weight: 800;
-  max-width: 510px;
-}
-
-.web__info-heading span {
-  font-family: var(--font-family);
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 30px;
-  color: var(--color-subtext);
-  cursor: pointer;
-}
-
-.web__info-container {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  margin-top: 2rem;
-}
-
-.web__info-container .web__features-container__feature {
-  flex: 1;
-  margin: 1rem;
-  min-width: 210px;
-  display: unset;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
 }
 
-.web__info-container .web__features-container_feature-text {
-  margin-top: 0.5rem;
+.info__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4.5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--color-heading);
 }
 
-@media screen and (max-width: 1024px) {
-  .web__info-heading {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 0rem;
-    margin-top: 1rem;
-  }
-
-  .web__info-heading p {
-    margin-top: 1rem;
-  }
+.info__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-@media screen and (max-width: 768px) {
-  .web__info-feature .web__features-container__feature {
-    flex-direction: column;
-  }
-
-  .web__info-feature .web__features-container_feature-text {
-    margin-top: 0.5rem;
-  }
-
-  .web__info-heading h1 {
-    font-size: 28px;
-    line-height: 40px;
-  }
+.info__link span {
+  -webkit-text-fill-color: var(--accent-ember);
+  transition: transform 0.25s ease;
 }
 
-@media screen and (max-width: 480px) {
-  .web__info-heading {
-    margin: 1rem 0;
+.info__link:hover span {
+  transform: translateX(6px);
+}
+
+.info__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info__card {
+  padding: 2.25rem;
+  border: 1px solid var(--color-line);
+  border-radius: 20px;
+  background: var(--color-surface);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.info__card:hover {
+  border-color: rgba(178, 107, 255, 0.45);
+  box-shadow: 0 0 40px rgba(178, 107, 255, 0.12);
+  transform: translateY(-4px);
+}
+
+@media screen and (max-width: 900px) {
+  .info__layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 
-  .web__info-container .web__features-container__feature {
-    margin: 1rem 0;
-    min-width: 100%;
+  .info__sticky {
+    position: static;
   }
 }

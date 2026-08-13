@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
-import logo from "../../assets/logo.svg";
+import {
+  gsap,
+  ScrollTrigger,
+  useGSAP,
+  isReducedMotion,
+} from "../../lib/gsapSetup";
 import "./Navbar.css";
 
 const Menu = () => (
@@ -10,10 +15,10 @@ const Menu = () => (
         <a href="#home">Home</a>
       </li>
       <li>
-        <a href="#info">What is GPT?</a>
+        <a href="#info">What is GPT-Bot</a>
       </li>
       <li>
-        <a href="#possibility">Open AI</a>
+        <a href="#possibility">The Robot</a>
       </li>
       <li>
         <a href="#features">Case Studies</a>
@@ -40,46 +45,98 @@ const Sign = () => (
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
+  const scope = useRef(null);
+
+  // hide on scroll down, reveal on scroll up
+  useGSAP(
+    () => {
+      if (isReducedMotion()) return;
+      const st = ScrollTrigger.create({
+        start: "top top",
+        end: "max",
+        onUpdate: (self) => {
+          if (self.direction === 1 && self.scroll() > 120) {
+            gsap.to(scope.current, {
+              yPercent: -140,
+              duration: 0.45,
+              ease: "power3.out",
+              overwrite: "auto",
+            });
+          } else {
+            gsap.to(scope.current, {
+              yPercent: 0,
+              duration: 0.45,
+              ease: "power3.out",
+              overwrite: "auto",
+            });
+          }
+        },
+      });
+      return () => st.kill();
+    },
+    { scope },
+  );
+
+  // mobile menu entrance
+  useGSAP(
+    () => {
+      if (!toggleMenu || isReducedMotion()) return;
+      gsap.from(".navbar__mobile", {
+        y: -16,
+        autoAlpha: 0,
+        duration: 0.35,
+        ease: "power3.out",
+      });
+      gsap.from(".navbar__mobile li", {
+        y: 14,
+        autoAlpha: 0,
+        stagger: 0.05,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    },
+    { scope, dependencies: [toggleMenu] },
+  );
 
   return (
-    <div className="web__navbar">
-      <div className="web__navbar-links">
-        <div className="web__navbar-links_logo">
-          <img src={logo} alt="logo" />
-        </div>
-        <div className="web__navbar-links_container">
+    <header className="navbar" ref={scope}>
+      <nav className="navbar__pill">
+        <a href="#home" className="navbar__logo">
+          GPT<span>-Bot</span>
+        </a>
+        <div className="navbar__links">
           <Menu />
         </div>
-      </div>
-      <div className="web__navbar-sign">
-        <Sign />
-      </div>
-      <div className="web__navbar-menu">
-        {toggleMenu ? (
-          <RiCloseLine
-            color="#fff"
-            size={27}
-            onClick={() => setToggleMenu(false)}
-          />
-        ) : (
-          <RiMenu3Line
-            color="#fff"
-            size={27}
-            onClick={() => setToggleMenu(true)}
-          />
-        )}
-        {toggleMenu && (
-          <div className="web__navbar-menu_container scale-up-tr">
-            <div className="web__navbar-menu_container-links">
-              <Menu />
-            </div>
-            <div className="web__navbar-menu_container-links-sign">
-              <Sign />
-            </div>
+        <div className="navbar__sign">
+          <Sign />
+        </div>
+        <div className="navbar__toggle">
+          {toggleMenu ? (
+            <RiCloseLine
+              color="#fff"
+              size={27}
+              onClick={() => setToggleMenu(false)}
+            />
+          ) : (
+            <RiMenu3Line
+              color="#fff"
+              size={27}
+              onClick={() => setToggleMenu(true)}
+            />
+          )}
+        </div>
+      </nav>
+      {toggleMenu && (
+        <div className="navbar__mobile">
+          <div onClick={() => setToggleMenu(false)}>
+            <Menu />
           </div>
-        )}
-      </div>
-    </div>
+          <div className="navbar__mobile-sign">
+            <Sign />
+          </div>
+        </div>
+      )}
+    </header>
   );
 };
 

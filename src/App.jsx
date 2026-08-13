@@ -1,17 +1,18 @@
+import { useState } from "react";
 import { Footer, Blog, Possibility, Features, Main, Info } from "./containers";
-import { Cta, Brand, Navbar } from "./components";
+import { Cta, Brand, Navbar, Preloader } from "./components";
 import "./App.css";
 
 const App = () => {
+  const [booted, setBooted] = useState(false);
+
   return (
     <div className="app">
-      <div className="app__main gradient__bg">
-        <Navbar />
-        <div className="app__main-section">
-          <Main />
-          <Brand />
-        </div>
-      </div>
+      <Preloader onReveal={() => setBooted(true)} />
+      <div className="app__grain" aria-hidden="true" />
+      <Navbar />
+      <Main booted={booted} />
+      <Brand />
       <Info />
       <Features />
       <Possibility />

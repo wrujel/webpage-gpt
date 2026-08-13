@@ -1,69 +1,79 @@
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--color-bg);
-}
-
-a {
-  color: unset;
-  text-decoration: none;
-}
-
 .app {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.app__main {
+  /* must stay block-level: pinning a direct flex item breaks ScrollTrigger's pin spacing */
+  display: block;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 5% 0;
 }
 
-.gradient__bg {
-  background: -moz-radial-gradient(
-    circle at 3% 25%,
-    rgba(0, 40, 83, 1) 0%,
-    rgba(4, 12, 24, 1) 25%
-  );
+/* film grain overlay */
+.app__grain {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  pointer-events: none;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
-  /* safari 5.1+,chrome 10+ */
-  background: -webkit-radial-gradient(
-    circle at 3% 25%,
-    rgba(0, 40, 83, 1) 0%,
-    rgba(4, 12, 24, 1) 25%
-  );
+/* perspective grid floor — the robot floats above this */
+.floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 55vh;
+  z-index: 1;
+  pointer-events: none;
+}
 
-  /* opera 11.10+ */
-  background: -o-radial-gradient(
-    circle at 3% 25%,
-    rgba(0, 40, 83, 1) 0%,
-    rgba(4, 12, 24, 1) 25%
-  );
+.floor__grid {
+  position: absolute;
+  left: -12%;
+  right: -12%;
+  top: -12%;
+  bottom: 0;
+  transform: perspective(700px) rotateX(62deg);
+  transform-origin: center bottom;
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.95) 40%, transparent 96%);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.95) 40%, transparent 96%);
+  opacity: 0.7;
+  overflow: hidden;
+}
 
-  /* ie 10+ */
-  background: -ms-radial-gradient(
-    circle at 3% 25%,
-    rgba(0, 40, 83, 1) 0%,
-    rgba(4, 12, 24, 1) 25%
-  );
+/* the line pattern lives on a pseudo so scroll-driven motion can move it
+   via the --gy variable on the parent — no constant animation: 1px lines
+   drifting on a tilted plane shimmer ("flash") from sub-pixel crawl */
+.floor__grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  top: -64px; /* extra rows so scroll-driven shifts never show a gap */
+  background-image:
+    linear-gradient(rgba(178, 107, 255, 0.34) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(178, 107, 255, 0.34) 1px, transparent 1px);
+  background-size: 64px 64px;
+  transform: translateY(var(--gy, 0px));
+}
 
-  /* global 92%+ browsers support */
-  background: radial-gradient(
-    circle at 3% 25%,
-    rgba(0, 40, 83, 1) 0%,
-    rgba(4, 12, 24, 1) 25%
+.floor__horizon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(178, 107, 255, 0.65) 30%,
+    rgba(255, 123, 84, 0.65) 70%,
+    transparent
   );
+  filter: blur(1px);
+  opacity: 0.5;
+}
+
+.floor--static .floor__grid {
+  opacity: 0.45;
 }
 
 .gradient__text {
@@ -74,98 +84,46 @@ a {
 }
 
 .section__padding {
-  padding: 4rem 6rem;
-  max-width: 1920px;
-  align-self: center;
+  width: min(100% - 8rem, 1440px);
+  margin-inline: auto;
+  padding-block: 6rem;
 }
 
 .section__margin {
-  margin: 4rem 6rem;
-  max-width: 1920px;
-  align-self: center;
+  width: min(100% - 8rem, 1440px);
+  margin-inline: auto;
+  margin-block: 4rem;
 }
 
-.scale-up-center {
-  -webkit-animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
-    both;
-  animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+/* shared eyebrow label */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 100%;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-text);
 }
 
-.scale-up-tr {
-  -webkit-animation: scale-up-tr 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-  animation: scale-up-tr 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-}
-
-@-webkit-keyframes scale-up-center {
-  0% {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-}
-@keyframes scale-up-center {
-  0% {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-}
-
-@-webkit-keyframes scale-up-tr {
-  0% {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    -webkit-transform-origin: 100% 0%;
-    transform-origin: 100% 0%;
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transform-origin: 100% 0%;
-    transform-origin: 100% 0%;
-  }
-}
-@keyframes scale-up-tr {
-  0% {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-    -webkit-transform-origin: 100% 0%;
-    transform-origin: 100% 0%;
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-    -webkit-transform-origin: 100% 0%;
-    transform-origin: 100% 0%;
-  }
+.eyebrow::before {
+  content: "";
+  width: 2.5rem;
+  height: 2px;
+  background: var(--gradient-accent);
 }
 
 @media screen and (max-width: 768px) {
   .section__padding {
-    padding: 4rem;
+    width: min(100% - 3rem, 1440px);
+    padding-block: 4rem;
   }
 
   .section__margin {
-    margin: 4rem;
-  }
-
-  .app__main {
-    padding: 8% 0;
-  }
-}
-
-@media screen and (max-width: 480) {
-  .section__padding {
-    padding: 4rem 2rem;
-  }
-
-  .section__margin {
-    margin: 4rem 2rem;
+    width: min(100% - 3rem, 1440px);
+    margin-block: 3rem;
   }
 }

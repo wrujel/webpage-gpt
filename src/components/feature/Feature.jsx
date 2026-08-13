@@ -3,12 +3,12 @@ import "./Feature.css";
 
 const Feature = ({ title, text }) => {
   return (
-    <div className="web__features-container__feature">
-      <div className="web__features-container__feature-title">
+    <div className="feature">
+      <div className="feature__title">
         <div />
-        <h1>{title}</h1>
+        <h3>{title}</h3>
       </div>
-      <div className="web__features-container__feature-text">
+      <div className="feature__text">
         <p>{text}</p>
       </div>
     </div>

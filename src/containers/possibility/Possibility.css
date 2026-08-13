@@ -1,76 +1,75 @@
-.web__possibility {
-  display: flex;
-  flex-direction: row;
+.possibility {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
+  gap: 5rem;
 }
 
-.web__possibility-image {
-  flex: 1;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-right: 2rem;
+.possibility__image {
+  clip-path: inset(0 0 0 0 round 28px);
+  border-radius: 28px;
+  overflow: hidden;
 }
 
-.web__possibility-image img {
+.possibility__image img {
   width: 100%;
-  height: auto;
+  height: min(70vh, 600px);
+  object-fit: cover;
 }
 
-.web__possibility-content {
-  flex: 1;
+.possibility__content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   align-items: flex-start;
-  margin-top: 50px;
+  gap: 1.75rem;
 }
 
-.web__possibility-content h4 {
-  font-family: var(--font-family);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 30px;
-  color: var(--color-text);
-  margin-bottom: 1.5rem;
+.possibility__content h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: var(--color-heading);
 }
 
-.web__possibility-content h4:last-child {
-  color: var(--color-subtext);
+.possibility__text {
+  font-size: 1rem;
+  line-height: 1.8;
 }
 
-.web__possibility-content h1 {
-  font-family: var(--font-family);
-  font-weight: 800;
-  font-size: 34px;
-  line-height: 45px;
-  margin-bottom: 1.5rem;
+.possibility__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.web__possibility-content p {
-  font-family: var(--font-family);
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 30px;
-  color: var(--color-text);
-  margin-bottom: 2rem;
+.possibility__link span {
+  -webkit-text-fill-color: var(--accent-ember);
+  transition: transform 0.25s ease;
 }
 
-.web__features .web__features-container__feature-text {
-  max-width: unset;
+.possibility__link:hover span {
+  transform: translateX(6px);
 }
 
-@media screen and (max-width: 768px) {
-  .web__possibility {
-    flex-direction: column;
-    align-items: center;
+@media screen and (max-width: 900px) {
+  .possibility {
+    grid-template-columns: 1fr;
+    gap: 3rem;
   }
 
-  .web__possibility-image {
-    margin-right: 0;
-  }
-
-  .web__possibility-content {
-    margin-top: 2rem;
+  .possibility__image img {
+    height: 48vh;
   }
 }

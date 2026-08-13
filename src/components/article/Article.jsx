@@ -1,20 +1,22 @@
 import PropTypes from "prop-types";
+import { RiArrowRightUpLine } from "react-icons/ri";
 import "./Article.css";
 
 const Article = ({ imgUrl, date, title }) => {
   return (
-    <div className="web__blog-container__article">
-      <div className="web__blog-container__article-image">
-        <img src={imgUrl} alt="blog image" />
+    <article className="article">
+      <div className="article__image">
+        <img src={imgUrl} alt={title} />
       </div>
-      <div className="web__blog-container__article-content">
-        <div>
-          <p>{date}</p>
-          <h3>{title}</h3>
-        </div>
-        <p>Read Full Article</p>
+      <div className="article__content">
+        <p className="article__date">{date}</p>
+        <h3>{title}</h3>
+        <p className="article__link">
+          Read Full Article
+          <RiArrowRightUpLine aria-hidden="true" />
+        </p>
       </div>
-    </div>
+    </article>
   );
 };
 

@@ -1,45 +1,71 @@
+import { useRef } from "react";
 import { Feature } from "../../components";
+import { useGSAP, reveals } from "../../lib/gsapSetup";
 import "./Features.css";
 
 const featuresData = [
   {
     id: 1,
     title: "Advanced Language Understanding",
-    text: "Leverage GPT-4's cutting-edge natural language processing capabilities to understand and generate human-like text with remarkable accuracy. Perfect for applications ranging from ChatBots to content creation.",
+    text: "GPT-Bot understands nuance, tone and context, so talking to him feels like talking to a person — not programming a machine.",
   },
   {
     id: 2,
-    title: "Customizable Responses",
-    text: "Tailor GPT-4's responses to fit your specific needs. Whether you're developing a personalized customer service bot or a unique voice for your brand, GPT-4 offers unparalleled flexibility and adaptability.",
+    title: "A Personality You Can Tune",
+    text: "Formal at work, playful at home. Adjust GPT-Bot's voice, humor and behavior until he fits your life perfectly.",
   },
   {
     id: 3,
-    title: "Seamless Integration",
-    text: "Easily integrate GPT-4 with your existing systems and platforms using our robust API. Enjoy a smooth and hassle-free setup process that gets you up and running in no time.",
+    title: "Always By Your Side",
+    text: "He floats from room to room, connects to your devices through our API, and is ready to help before you finish asking.",
   },
   {
     id: 4,
-    title: "Continuous Learning and Improvement",
-    text: "Benefit from GPT-4's ongoing advancements in machine learning. Our model continually evolves, incorporating new data and insights to provide you with the most accurate and relevant responses possible.",
+    title: "Learns Every Day",
+    text: "GPT-Bot keeps learning from every interaction — with your permission — becoming more helpful, and more you, over time.",
   },
 ];
 
 const Features = () => {
+  const scope = useRef(null);
+
+  useGSAP(() => reveals(scope.current), { scope });
+
+  const trackGlow = (e) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+    card.style.setProperty("--my", `${e.clientY - rect.top}px`);
+  };
+
   return (
-    <div className="web__features section__padding" id="features">
-      <div className="web__features-heading">
-        <h1 className="gradient__text">
-          The Future is Now and You Just Need to Realize It. Step into Future
-          Today and Make it Happen.
-        </h1>
-        <span>Request Early access to Get Started</span>
+    <section className="features section__padding" id="features" ref={scope}>
+      <div className="features__heading">
+        <p className="eyebrow" data-reveal>
+          Case studies
+        </p>
+        <h2 data-split>
+          The Future is Now and You Just Need to Realize It. Step into the
+          Future Today and Make it Happen.
+        </h2>
+        <a className="features__link" href="#blog" data-reveal>
+          Request Early Access to Get Started
+          <span aria-hidden="true">&rarr;</span>
+        </a>
       </div>
-      <div className="web__features-container">
+
+      <div className="features__grid" data-reveal-group>
         {featuresData.map((feature) => (
-          <Feature key={feature.id} title={feature.title} text={feature.text} />
+          <div
+            className="features__card"
+            key={feature.id}
+            onMouseMove={trackGlow}
+          >
+            <Feature title={feature.title} text={feature.text} />
+          </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

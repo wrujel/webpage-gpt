@@ -17,7 +17,7 @@
 </div>
 
 <div align='center'>
-  <h1>GPT-4o Landing Page with React</h1>
+  <h1>GPT-Bot Landing Page with React</h1>
 </div>
 
 <div align='center'>
@@ -32,7 +32,7 @@
 </div>
 
 <div align='center'>
-  Modern landing page for GPT-4o built with React and Vite, featuring a sleek dark UI with gradient accents, responsive design, and multiple content sections including blog, features, and call-to-action.
+  Cinematic landing page for GPT-Bot — a fictional floating AI assistant robot — built with React, Vite and GSAP. Deep-black UI with electric gradient accents, oversized display type, a boot-sequence preloader, a pinned scroll-story hero starring the floating robot with his speech bubble, and a horizontally-scrolled blog filmstrip.
 
   [Demo]({{DEMO_URL}}) · [Report issue](/issues) · [Suggest something](/issues)
 </div>
@@ -54,18 +54,17 @@
 
 ## Features
 
-- [x] Modern dark-themed UI with gradient text and backgrounds
-- [x] Fully responsive design with mobile-first breakpoints
-- [x] Animated hamburger navigation menu for mobile devices
-- [x] Hero section with email signup call-to-action
-- [x] Brand showcase section with partner logos (Google, Slack, Atlassian, Dropbox, Shopify)
-- [x] GPT-4o information section with feature cards
-- [x] Possibilities section highlighting AI use cases
-- [x] Features section with customizable response cards
-- [x] Blog section with article cards in grid layout
-- [x] Call-to-action section with gradient background
-- [x] Footer with navigation links and copyright
-- [x] CSS animations (scale-up-center, scale-up-tr)
+- [x] Cinematic boot-sequence preloader with counter and curtain reveal (GSAP)
+- [x] Pinned scroll-story hero: scrubbed scenes, split-text char reveal, giant "GPT-BOT" title card (ScrollTrigger + SplitText)
+- [x] Floating robot assistant with idle hover animation, breathing ground shadow and a cycling speech bubble
+- [x] Infinite partner-logo marquee with hover slow-down
+- [x] Horizontally-scrolled blog filmstrip pinned to vertical scroll, with progress bar (desktop)
+- [x] Split-text line reveals, staggered card reveals and masked parallax images across all sections
+- [x] Fixed blur navbar that hides on scroll down / shows on scroll up
+- [x] Magnetic CTA button and cursor-follow glow cards
+- [x] Animated perspective grid floor (holodeck-style) in hero and footer, film-grain overlay, custom scrollbar and selection styling
+- [x] Deep black + neon design tokens, Space Grotesk display type
+- [x] Fully responsive — pins and horizontal scroll disabled below 900px, `prefers-reduced-motion` respected
 - [x] Component-based architecture with reusable components
 - [x] ESLint configured for code quality
 
@@ -73,6 +72,7 @@
 
 - [React 18](https://react.dev/)
 - [Vite 5](https://vite.dev/)
+- [GSAP 3](https://gsap.com/) (ScrollTrigger, SplitText, @gsap/react)
 - [JavaScript (ES Modules)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 - [CSS3 (Custom Properties)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [React Icons](https://react-icons.github.io/react-icons/)
@@ -123,7 +123,7 @@ bun run build
 │   └── screenshot.png
 ├── src/
 │   ├── assets/
-│   │   ├── ai.webp
+│   │   ├── ai_robot.png
 │   │   ├── blog01-05.webp
 │   │   ├── logo.svg
 │   │   ├── people.png
@@ -135,6 +135,7 @@ bun run build
 │   │   ├── cta/
 │   │   ├── feature/
 │   │   ├── navbar/
+│   │   ├── preloader/
 │   │   └── index.js
 │   ├── containers/
 │   │   ├── blog/
@@ -144,6 +145,8 @@ bun run build
 │   │   ├── main/
 │   │   ├── possibility/
 │   │   └── index.js
+│   ├── lib/
+│   │   └── gsapSetup.js
 │   ├── App.jsx
 │   ├── App.css
 │   ├── main.jsx
