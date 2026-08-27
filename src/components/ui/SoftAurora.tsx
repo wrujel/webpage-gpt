@@ -179,6 +179,7 @@ export default function SoftAurora({
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    /* v8 ignore next -- React guarantees the ref is set before effects run */
     if (!containerRef.current) return;
     const container = containerRef.current;
     const renderer = new Renderer({ alpha: true, premultipliedAlpha: false });
