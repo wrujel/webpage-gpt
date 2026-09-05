@@ -11,7 +11,7 @@
   <a href='/'>
     <img
       src='screenshot.webp'
-      alt='Screenshot of the app'
+      alt='GPT-Bot landing page in dark mode with a glowing floating robot, a Say hi to GPT-Bot headline and an email sign-up with early-access social proof.'
       width='100%'
     />
   </a>
@@ -35,7 +35,7 @@
 </div>
 
 <div align='center'>
-  Cinematic landing page for GPT-Bot — a fictional floating AI assistant robot — built with React 19, Vite and GSAP. Deep-black UI with electric gradient accents, oversized display type, a boot-sequence preloader, a pinned scroll-story hero starring the floating robot with his speech bubble over a WebGL aurora, and a horizontally-scrolled blog filmstrip.
+  A cinematic landing page for GPT-Bot — a fictional floating AI assistant robot — built with React 19, Vite and GSAP. A boot-sequence preloader gives way to a pinned scroll-story hero with scrubbed scenes and split-text reveals, starring the floating robot and his cycling speech bubble over a shader-driven WebGL aurora rendered with OGL. Below it sit an infinite partner marquee, a horizontally-scrolled blog filmstrip pinned to vertical scroll, magnetic CTAs and an animated perspective grid floor, all on deep-black and neon design tokens.
 
 [Demo][demo-link] · [Report issue](/issues) · [Suggest something](/issues)
 
